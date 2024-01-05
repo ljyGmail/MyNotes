@@ -1,0 +1,4 @@
+# 도커 컨테이너, 이미지 정리
+docker stop $(docker ps | awk 'NR>1 {print $1, $2}' | grep -v 'datasciencetoolbox/dsatcl2e' | awk '{print $1}')
+docker rm $(docker ps -a | awk 'NR>1 {print $1, $2}' | grep -v 'datasciencetoolbox/dsatcl2e' | awk '{print $1}')
+docker rmi -f $(docker images | awk 'NR>1 {print $1, $3}' | grep -v 'datasciencetoolbox/dsatcl2e' | awk '{print $2}'
