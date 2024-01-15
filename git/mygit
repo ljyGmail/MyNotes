@@ -1,5 +1,11 @@
 #!/bin/bash
 # 一次性提交代码，包括本地和服务器
+printStep() {
+    echo "=========> STEP $1 <=========="
+    echo "##### $2 #####"
+    echo "##############################"
+    return
+}
 
 if [ -n "$1" ]; then
     commit_message=$1
@@ -8,8 +14,13 @@ else
     exit
 fi
 
-git status \
-&& git add . \
+printStep 1 "Git Status Before Add to Index" \
 && git status \
+&& printStep 2 "Adding Files to Index" \
+&& git add . \
+&& printStep 3 "Git Status After Add to Index" \
+&& git status \
+&& printStep 4 "Committing Changes" \
 && git commit -m "$commit_message" \
+&& printStep 5 "Pushing Commits" \
 && git push origin main
