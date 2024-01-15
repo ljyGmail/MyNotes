@@ -1,6 +1,7 @@
-cassandra docker세팅 절차
+# cassandra docker세팅 절차
 
-################## Run Dokcer Container: ##################
+## Run Dokcer Container:
+```docker
 docker pull cassandra
 
 docker run -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160 --name cassandra -d cassandra:latest
@@ -8,9 +9,11 @@ docker run -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160 --na
 docker exec -it {container_id} bash
 
 cqlsh
+```
 
-################## Cassandra Commands: ##################
+## Cassandra Commands:
 
+```cql
 DESCRIBE CLUSTER
 DESCRIBE KEYSPACES
 SHOW VERSION
@@ -56,4 +59,4 @@ SELECT * FROM user WHERE first_name='Bill'
 
 TRUNCATE user;
 DROP TABLE user;
-
+```
