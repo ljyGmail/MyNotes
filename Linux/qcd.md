@@ -23,4 +23,7 @@ qcd () {
     # Helpfully print the current directory name in dicate where y
     pwd
 }
+
+# Set up tab completion
+complete -W "work shell" qcd
 ```
