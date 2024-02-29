@@ -19,3 +19,21 @@
 `A -> $a`  
 `o -> A<CR>`  
 `O -> ko`
+
+## Tip 3. Take One Step Back, Then Three Forward
+
+* Pad each + sign with spaces
+```javascript
+var foo = "method("+argument1+","+arguments2+")";
+```
+
+```vim
+f+
+s + <Esc>
+;
+.
+;.
+;.
+```
+
+* Make the Motion Repeatable
