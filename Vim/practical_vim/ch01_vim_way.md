@@ -22,9 +22,10 @@
 
 ## Tip 3. Take One Step Back, Then Three Forward
 
-* Pad each + sign with spaces
+- Pad each + sign with spaces
+
 ```javascript
-var foo = "method("+argument1+","+arguments2+")";
+var foo = "method(" + argument1 + "," + arguments2 + ")";
 ```
 
 ```vim
@@ -36,4 +37,16 @@ s + <Esc>
 ;.
 ```
 
-* Make the Motion Repeatable
+- Make the Motion Repeatable
+
+## Tip 4. Act, Repeat, Reverse
+
+| Intent                           | Act                   | Repeat | Reverse |
+| -------------------------------- | --------------------- | ------ | ------- |
+| Make a change                    | {edit}                | `.`    | `U`     |
+| Scan line for next character     | `f{char}`/`t{char}`   | `;`    | `,`     |
+| Scan line for previous character | `F{char}`/`T{char}`   | `;`    | `,`     |
+| Scan document for next match     | /pattern`<CR>`        | `n`    | `N`     |
+| Scan document for previous match | ?pattern`<CR>`        | `n`    | `N`     |
+| Perform substitution             | :s/target/replacement | `&`    | `u`     |
+| Execute a sequence of changes    | `qx{change}q`         | `@x`   | `u`     |
