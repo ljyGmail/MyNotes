@@ -50,3 +50,9 @@ s + <Esc>
 | Scan document for previous match | ?pattern`<CR>`        | `n`    | `N`     |
 | Perform substitution             | :s/target/replacement | `&`    | `u`     |
 | Execute a sequence of changes    | `qx{change}q`         | `@x`   | `u`     |
+
+## Tip 5. Find and Replace by Hand
+
+* Use `*` to executes a search for the word under the cursor at the moment.
+
+* Make the Change Repeatable
