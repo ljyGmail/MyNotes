@@ -53,6 +53,10 @@ s + <Esc>
 
 ## Tip 5. Find and Replace by Hand
 
-* Use `*` to executes a search for the word under the cursor at the moment.
+- Use `*` to executes a search for the word under the cursor at the moment.
 
-* Make the Change Repeatable
+- Make the Change Repeatable
+
+## Tip 6. Meet the Dot Formula
+
+- The Ideal: One Keystroke to Move, One Keystroke to Execute
