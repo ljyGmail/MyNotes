@@ -1,7 +1,7 @@
 1. Create a named session
 	tmux new-session -s [session_name]
-Short form:
-	tmux new -s [session_name]
+	Short form:
+		tmux new -s [session_name]
 	
 2. Tmux command prefix:
 	Ctrl + b
@@ -37,5 +37,17 @@ Short form:
 	
 	Prefix + Spacebar -> cycle through pane layouts 
 		(even-horizontal, even-vertical, main-horizontal, main-vertical, tiled)
+		
+	Prefix + q -> momentarily display 
 	
 	exit or Prefix + x -> close the current pane
+	
+6. Working with command mode
+	Prefix + : -> enter command mode
+	Example:
+		new-window -n console -> create a new window with the specified name
+		new-window -n processes "[command]" -> create a new window with the specified name and execute the command
+			Using this command, the window is closed after the command is finished.
+			
+7. Help
+	Prefix + ?
