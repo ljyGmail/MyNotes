@@ -1,0 +1,41 @@
+1. Create a named session
+	tmux new-session -s [session_name]
+Short form:
+	tmux new -s [session_name]
+	
+2. Tmux command prefix:
+	Ctrl + b
+	Prefix + t -> Show time
+	
+3. Detaching and attaching session
+	Prefix + d -> detatch from the tmux session:
+	tmux list-sessions -> list existing tmux sessions
+		Short form: tmux ls
+	
+	tmux attach -> attatch to the session if only one session is running
+	tmux new -s [session_name] -d -> create a new session but run it in the background
+	tmux attach -t [session_name] -> attach to the specified session
+	tmux kill-session -t [session_name] -> kill the specified session
+	
+4. Working with windows
+	tmux new -s [session_name] -n [window_name] -> create a named session and give a name to the first window
+	Prefix + c -> create a window in the current session
+	Prefix + , -> rename the current window
+	Moving between windows:
+		Prefix + p -> previous window
+		Prefix + n -> next window
+		Prefix + [0-9] -> move to the window of the specified number
+		Prefix + w -> display a visual menu of windows to select
+		Prefix + f -> find a window that the name contains a string of text
+	exit or Prefix + &: close the current window
+	
+5. Working with panes
+	Prefix + % -> split the window vertically
+	Prefix + " -> split the window horizontally
+	Prefix + o -> cycle through the panes
+	Prefix + arrow keys -> move around panes using arrow keys
+	
+	Prefix + Spacebar -> cycle through pane layouts 
+		(even-horizontal, even-vertical, main-horizontal, main-vertical, tiled)
+	
+	exit or Prefix + x -> close the current pane
