@@ -1,0 +1,121 @@
+1. Configuration file for tmux:
+	~/.tmux.conf
+	
+2. Defining an easier prefix
+	# Setting the prefix from C-b to C-a
+	set -g prefix C-a
+	
+	# Free the original C-b prefix keybinding
+	unbind C-b
+	
+	After editing the .tmux.conf file, the config is not applied yet.
+	There are 2 ways to make the edited conf file take into effect:
+		1. close all the sessions that are running and restart a session
+		2. enter tmux's command mode and load the config file: Prefix + :, source-file ~/.tmux.conf
+		
+	Changing the default delay
+		# Setting the delay between prefix and command
+		set -s escape-time 1
+	
+	Setting the windows and panes index
+		# Set the base index for windows to 1 instead of 0
+		set -g base-index 1
+		# Set the base index for panes to 1 instead of 0
+		set -g pane-base-index 1
+		
+3. Customizing keys, commands and user input
+	Create a shortcut to reload the Configuration
+		# Reload the tmux config file with Prefix + r
+		bind r source-file ~/.tmux.conf \; display "Reloaded!"
+	
+	Sending the prefix to other application
+		# Ensure that we can send Ctrl + a to other apps
+		bind C-a send-prefix
+		
+	Splitting Panes
+		# Splitting panes with | and -
+		bind | split-window -h
+		bind - split-window -v
+		
+	Remapping movement keys
+		# Moving between panes with prefix + h,j,k,l
+		bind h select-pane -L
+		bind j select-pane -D
+		bind k select-pane -U
+		bind l select-pane -R
+		
+		# Quick window selection
+		bind -r C-h select-window -t :-
+		bind -r C-l select-window -t :+
+		
+		# Resizing panes with Prefix H, J, K, L
+		bind -r H resize-pane -L 5
+		bind -r J resize-pane -D 5
+		bind -r K resize-pane -U 5
+		bind -r L resize-pane -R 5
+		
+		# Mouse support: set to on if you want to use the mouse
+		set -g mouse off
+		
+4. Visual Styling
+	Configuring Colors
+		tput colors -> determine the number of colors supported by the terminal session
+			if the number is not 256, you'll need to do a little configuration
+		
+		# Set the default terminal mode to 256color mode
+		set -g default-terminal "screen-256color"
+		
+	Changing colors
+		To find the numbers for colors, use the following shell script:
+			for i in {0..255}; do
+				printf "\x1b[38;5;${i}m${i}"
+			done
+			
+	Changing the status line colors
+		# Set the status line's colors
+		set -g status-style fg=white,bg=black
+		
+	Change the window list colors
+		# Set the color of the window list
+		setw -g window-status-style fg=cyan,bg=black
+		
+		# Set colors for the active window
+		setw -g window-status-current-style fg=white,bold,bg=red
+		
+	Changing the appearance of panes
+		# Colors for pane borders
+		setw -g pane-border-style fg=green,bg=black
+		setw -g pane-active-border-style fg=white,bg=yellow
+		
+		# Active pane normal, other-shaded out
+		setw -g window-style fg=colour240,bg=colour235
+		setw -g window-active-style fg=white,bg=black
+		
+	Customizing the tmux command line
+		# Command / message line
+		set -g message-style fg=white,bold,bg=black
+		
+Customizing the status line's content
+
+	Configuring status line items
+		# Status line left side to show Session:Window:Pane
+		set -g status-left-length 40
+		set -g status-left "#[fg=green]Session: #S #[fg=yellow]#I #[fg=cyan]#P"
+		
+		# Status line right side: 31-Oct 13:37
+		set -g status-right "#[fg=cyan]%d-%b %R"
+	
+	Keeping status line info up to date
+		# Update the status line every sixty seconds
+		set -g status-interval 60
+	
+	Centering the window list
+		# Center the window list in the status line
+		set -g status-justify centre
+		
+	Identifying activity in other windows
+		# Enable activity alerts
+		setw -g monitor-activity on
+		set -g visual-activity on
+		# Set colors for activity indicator
+		setw -g window-status-activity-style fg=yellow,bright,bg=green
