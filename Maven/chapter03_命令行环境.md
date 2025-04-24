@@ -38,6 +38,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- 坐标信息 -->
+  <!-- 在本地仓库中安装后对应的路径: -->
+  <!-- com\atguigu\maven\pro01-maven-java\1.0-SNAPSHOT\pro01-maven-java-1.0-SNAPSHOT.jar -->
   <!-- groupId标签: 坐标向量之一: 代表公司或组织开发的某一个项目 -->
   <groupId>com.atguigu.maven</groupId>
   <!-- artifactId标签: 坐标向量之一: 代表项目下的某一个模块 -->
@@ -84,3 +86,71 @@
 
 ![目录结构](./images/021_a_directory_structure.png)
 ![约定](./images/021_b_convention_over_configuration.png)
+
+## 022 Maven 命令行 实验二 添加Java代码
+
+![添加Java代码](./images/022_a_add_java_code.png)
+
+## 023 Maven 命令行 实验三 clean和compile命令
+
+![Maven命令](./images/023_a_maven_command.png)
+![编译命令](./images/023_b_command_compile.png)
+
+* 执行`mvn compile`和`mvn test-compilel`后:  
+![执行编译后](./images/023_c_after_compile.png)
+
+* 执行`mvn clean`后:  
+![执行clean后](./images/023_d_after_clean.png)
+
+## 024 Maven 命令行 实验三 test命令
+
+![test命令](./images/024_a_command_test.png)
+
+![test命令画面](./images/024_b_test_result.png)
+
+## 025 Maven 命令行 实验三 package命令
+
+![package命令](./images/025_a_command_package.png)
+
+* 执行`package`命令后:  
+![执行package命令](./images/025_b_after_package.png)
+
+## 026 Maven 命令行 实验三 install命令
+
+![install命令](./images/026_a_command_install.png)  
+
+* 执行`install`命令后:  
+
+![执行install命令](./images/026_b_after_install.png)
+
+## 027 Maven 命令行 实验四 生成Web工程 执行生成
+
+![web工程](./images/027_a_webapp_archetype.png)  
+
+```
+mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.4
+```
+
+![生成web工程](./images/027_b_generate_web_project.png)  
+
+## 028 Maven 命令行 实验四 生成Web工程 执行构建
+
+* 添加如下Servlet, web.xml, jsp内容
+
+![添加Servlet](./images/028_a_add_servlet.png)  
+![添加web.xml](./images/028_b_add_web_xml.png)  
+![添加jsp](./images/028_c_add_jsp.png)  
+
+* 此时如果用maven执行编译不会通过，因为还没有引入servlet-api的jar包。在pom.xml中添加如下配置:
+
+![添加servlet-api依赖](./images/028_d_servlet_api_dependency.png)  
+
+* 使用`mvn package`命令进行打包，可看到生成的war包。
+
+![生成war包](./images/028_e_package_war.png)  
+
+## 029 Maven 命令行 实验四 生成Web工程 执行部署
+
+* 将生成的war包或同名的目录复制到tomcat的webapps目录下，完成部署。
+
+![tomcat部署](./images/029_a_deploy_to_tomcat.png)  
