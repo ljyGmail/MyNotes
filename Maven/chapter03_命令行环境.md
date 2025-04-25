@@ -226,3 +226,103 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -Darchetyp
 
 * 但此配置对Java工程中对`commons-logging`的依赖不会产生影响。
 ![确认Java工程中没有排除此依赖](./images/036_d_not_removed_dependency.png)  
+
+## 037 Maven 命令行 实验九 继承 概述
+
+![继承概念](./images/037_a_inheritance_concept.png)  
+![继承作用](./images/037_b_inheritance_function.png)  
+![继承举例](./images/037_c_inheritance_example.png)  
+
+## 038 Maven 命令行 实验九 继承 创建父子工程
+
+![创建父工程](./images/038_a_create_parent_project.png)  
+![创建子模块](./images/038_b_create_children_modules.png)  
+
+* 父工程的`pom.xml`配置:
+![父工程的pom配置](./images/038_c_parent_pom.png)  
+
+* 子模块的`pom.xml`配置:
+![子模块的pom配置](./images/038_d_child_pom.png)  
+
+## 039 Maven 命令行 实验九 继承 在父工程管理依赖
+
+* 在`pro03-maven-parent`父工程的`pom.xml`中添加如下配置:
+
+```
+<!-- 在父工程中统一管理依赖信息 -->
+<!-- 注意: 即使在父工程配置了对依赖的管理，
+  子工程需要使用具体哪一个依赖还是要明确配置。 -->
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>4.0.0.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>4.0.0.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>4.0.0.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-expression</artifactId>
+      <version>4.0.0.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>4.0.0.RELEASE</version>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+```
+
+* 在子模块中分别添加如下的配置:
+
+![模块pro04配置依赖](./images/039_a_module_pom1.png)  
+![模块pro05配置依赖](./images/039_b_module_pom2.png)  
+![模块pro06配置依赖](./images/039_c_module_pom3.png)  
+
+* 子模块中的依赖树形图:
+![模块pro04依赖树形图](./images/039_d_module_dep_tree1.png)  
+![模块pro05依赖树形图](./images/039_e_module_dep_tree2.png)  
+![模块pro06依赖树形图](./images/039_e_module_dep_tree3.png)  
+
+## 040 Maven 命令行 实验九 继承 在父工程修改依赖版本
+
+* 在父工程的`pom.xml`中所有的`4.0.0.RELEASE`改为`4.1.0.RELEASE`。
+
+* 确认所有的子模块中依赖的版本已改变。
+
+![模块中依赖版本变化1](./images/040_a_version_change_module1.png)  
+![模块中依赖版本变化2](./images/040_b_version_change_module2.png)  
+![模块中依赖版本变化3](./images/040_c_version_change_module3.png)  
+
+## 041 Maven 命令行 实验九 继承 配置自定义属性
+
+* 定义属性
+![定义属性](./images/041_a_define_property.png)  
+
+* 使用属性
+![使用属性](./images/041_b_use_property.png)  
+
+## 042 Maven 命令行 实验九 继承 实际意义
+
+![实际意义](./images/042_a_inheritance_actual_usage.png)  
+
+## 043 Maven 命令行 实验十 聚合
+
+* 在pro4中添加配置，使其依赖于pro5:
+![pro4依赖于pro5](./images/043_a_pro4_depends_on_pro5.png)  
+
+* 在pro5中添加配置，使其依赖于pro6:
+![pro5依赖于pro6](./images/043_b_pro5_depends_on_pro6.png)  
+
+* 安装工程:
+![一键安装](./images/043_c_one_click_install.png)  
