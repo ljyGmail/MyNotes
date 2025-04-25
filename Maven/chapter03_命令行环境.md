@@ -154,3 +154,75 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -Darchetyp
 * 将生成的war包或同名的目录复制到tomcat的webapps目录下，完成部署。
 
 ![tomcat部署](./images/029_a_deploy_to_tomcat.png)  
+
+## 030 Maven 命令行 实验五 针对Web工程执行构建命令
+
+![添加依赖](./images/030_a_add_dependency_in_web_project.png)  
+
+![添加单元测试](./images/030_b_add_unit_test.png)  
+
+1. 执行测试`mvn test`，可以看到测试成功通过。
+1. 执行打包`mvn package`后，可以看到生成的war包的解压目录中的lib目录包含java工程的java包。
+![打包后确认lib](./images/030_c_after_package_lib_included.png)
+1. 查看当前工程的依赖的命令
+  * `mvn dependency:list`
+![依赖列表](./images/030_d_dependency_list.png)  
+
+  * `mvn dependency:tree`
+![树形依赖列表](./images/030_e_dependency_tree.png)  
+
+## 031 Maven 命令行 实验六 依赖范围 测试compile范围 空间角度
+
+![依赖的范围](./images/031_a_scope.png)  
+
+* 验证`compile`范围的类在`main`中可用
+![依赖的范围](./images/031_b_compile_in_main.png)  
+
+* 验证`compile`范围的类在`test`中可用
+![依赖的范围](./images/031_c_compile_in_test.png)  
+
+## 032 Maven 命令行 实验六 依赖范围 测试compile范围 时间角度
+
+![complie和provided比较](./images/032_a_compile_provided.png)  
+
+* 从时间角度看，`compile`范围的依赖会部署到服务器中。而`test`和`provided`范围的依赖不会部署到服务器中。
+
+## 033 Maven 命令行 实验六 依赖范围 测试test范围
+
+![在main中导入junit](./images/033_a_import_junit_in_main.png)  
+
+* 若在main中导入junit类，可以看到编译报错。
+
+![执行编译报错](./images/033_b_run_compile_command.png)  
+
+* 从时间角度看，生成后的war包里也不会包含关于`test`范围的内容。
+
+## 034 Maven 命令行 实验六 依赖范围 测试provided范围
+
+![结论](./images/034_a_summary.png)  
+
+## 035 Maven 命令行 实验七 依赖传递性
+
+![依赖的传递](./images/035_a_dependency_transfer.png)  
+
+![测试依赖的传递](./images/035_b_test_dependency_transfer.png)  
+
+* 在java工程的`pom.xml`中添加如下依赖:
+![java工程添加依赖](./images/035_c_update_pom_in_pro1.png)  
+
+* 查看web工程依赖树，可以看到只有范围是`compile`的依赖传递了过来:
+![查看web工程依赖树](./images/035_d_confirm_dependency_in_pro2.png)  
+
+## 036 Maven 命令行 实验八 依赖的排除
+
+![依赖的排除](./images/036_a_remove_dependency.png)  
+
+* 在web工程的`pom.xml`中配置对`commons-logging`依赖的排除。
+
+![配置依赖的排除](./images/036_b_remove_dependency_in_pom.png)  
+
+* 配置依赖的排除后，可以看到web工程中对`commons-logging`的依赖已被排除。
+![确认web工程中此依赖被排除](./images/036_c_removed_dependency.png)  
+
+* 但此配置对Java工程中对`commons-logging`的依赖不会产生影响。
+![确认Java工程中没有排除此依赖](./images/036_d_not_removed_dependency.png)  
